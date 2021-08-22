@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 add_executable(${PROJECT_NAME}
     my_first_test_for_first_unit.cpp
+    my_second_test_for_first_unit.cpp
     ${GTestFiles})
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} PRIVATE gtest_main)
