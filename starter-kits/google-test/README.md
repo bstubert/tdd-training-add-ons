@@ -2,14 +2,14 @@
 
 ## How to Build the Starter Kit
 
-We unpack the google-test-starterkit.zip in a directory of our choice. We copy the subdirectory
+We unpack the googletest-starterkit.zip in a directory of our choice. We copy the subdirectory
 `testing-c` best to a sibling of the directory containing the source code that we want to test.
 For example, if the source directory is `/path/to/unit-1/src`, we run the following two commands:
 
     $ mkdir /path/to/unit-1/tests
     $ cp -r /path/to/starterkit/google-test/testing-c/* /path/to/unit-1/
 
-We can install the starter kit any where we want. The closer it is to the source code the easier
+We can install the starter kit anywhere we want. The closer it is to the source code the easier
 it is to provide the paths to the headers, sources and libraries.
 
 We build the starter kit with the following commands in the subdirectory `build-tests` of 
@@ -39,3 +39,8 @@ We can run all the tests with `ctest` from the Linux prompt.
     $ ctest -R MyFirstTestForFirstUnit -V
 
 The combination of CTest and Google Test integrates well with IDEs like QtCreator and CLion.
+
+## Resources
+
+  - [Quickstart: Building with CMake](http://google.github.io/googletest/quickstart-cmake.html)
+  - [Googletest Primer](http://google.github.io/googletest/primer.html)
