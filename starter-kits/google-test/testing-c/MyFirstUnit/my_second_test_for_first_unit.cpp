@@ -2,7 +2,12 @@
 
 #include <gtest/gtest.h>
 
-using namespace testing;
+extern "C"
+{
+/*!
+ * Add your c-only include files here!
+ */
+}
 
 class MySecondTestForFirstUnit : public testing::Test
 {

@@ -2,7 +2,12 @@
 
 #include <gtest/gtest.h>
 
-using namespace testing;
+extern "C"
+{
+/*!
+ * Add your c-only include files here!
+ */
+}
 
 /*!
  * For each test marked TEST_F (e.g., MyFirstTestForFirstUnit.test1), GoogleTest performs
