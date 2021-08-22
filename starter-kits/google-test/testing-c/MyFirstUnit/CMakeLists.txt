@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.14)
 
-project(my_first_test LANGUAGES CXX)
+project(my_first_unit LANGUAGES CXX)
 
 # GoogleTest requires at least C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -19,7 +19,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 add_executable(${PROJECT_NAME}
-    my_first_test.cpp
+    my_first_test_for_first_unit.cpp
     ${GTestFiles})
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} PRIVATE gtest_main)
