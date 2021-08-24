@@ -39,7 +39,7 @@ rebuild Google Test.
     $ cmake -S tests -B build-tests -G Ninja -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DCMAKE_C_COMPILER=/usr/bin/gcc
     $ cmake --build build-tests
 
-Depending on our build environment, we must adapt the generator, the C++ compiler and 
+Depending on the build environment, we must adapt the generator, the C++ compiler and 
 the C compiler.
 
 We can run all the tests with `ctest` from the Linux prompt.
