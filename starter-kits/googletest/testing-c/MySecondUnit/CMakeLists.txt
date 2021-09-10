@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.14)
 
-project(my_second_unit LANGUAGES CXX)
+project(my_second_unit LANGUAGES CXX C)
 
 enable_testing()
 add_executable(${PROJECT_NAME}
