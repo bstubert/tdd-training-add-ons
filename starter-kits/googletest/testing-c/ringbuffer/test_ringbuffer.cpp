@@ -10,6 +10,8 @@ extern "C"
 #include "ringbuffer.h"
 }
 
+// The ringbuffer example is taken from Nick Miller's post "Practical Design Patterns:
+// Opaque Pointers and Objects in C" (https://interrupt.memfault.com/blog/opaque-pointers).
 class TestRingbuffer : public testing::Test
 {
 protected:

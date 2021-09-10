@@ -6,8 +6,8 @@ project(test_ringbuffer LANGUAGES CXX C)
 
 enable_testing()
 add_executable(${PROJECT_NAME}
-    test_ringbuffer.cpp
     ../../../src-c/ringbuffer/ringbuffer.c
+    test_ringbuffer.cpp
     ${GTestFiles})
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PRIVATE ../../../src-c/ringbuffer)

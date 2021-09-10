@@ -20,4 +20,4 @@ FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(MyFirstUnit)
 #add_subdirectory(MySecondUnit)
-add_subdirectory(ringbuffer)
+#add_subdirectory(ringbuffer)
