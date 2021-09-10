@@ -12,7 +12,7 @@ ringbuffer_t ringbuffer_create(uint32_t capacity)
     return inst;
 }
 
-uint32_t ringbuffer_capacity(ringbuffer_t instance)
+uint32_t ringbuffer_capacity(ringbuffer_t this)
 {
-    return instance->capacity;
+    return this->capacity;
 }
