@@ -1,6 +1,18 @@
+#include <stdlib.h>
 #include "ringbuffer.h"
+
+struct ringbuffer_instance_t {
+    uint32_t capacity;
+};
 
 ringbuffer_t ringbuffer_create(uint32_t capacity)
 {
-    return 0;
+    ringbuffer_t inst = calloc(1, sizeof(struct ringbuffer_instance_t));
+    inst->capacity = capacity;
+    return inst;
+}
+
+uint32_t ringbuffer_capacity(ringbuffer_t instance)
+{
+    return instance->capacity;
 }

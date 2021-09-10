@@ -27,4 +27,5 @@ protected:
 TEST_F(TestRingbuffer, capacity)
 {
     auto rb = ringbuffer_create(5);
+    EXPECT_EQ(ringbuffer_capacity(rb), 5);
 }
