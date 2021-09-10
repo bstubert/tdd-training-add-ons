@@ -16,3 +16,11 @@ uint32_t ringbuffer_capacity(ringbuffer_t this)
 {
     return this->capacity;
 }
+
+void ringbuffer_destroy(ringbuffer_t instance)
+{
+    if (instance)
+    {
+        free(instance);
+    }
+}

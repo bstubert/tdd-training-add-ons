@@ -17,3 +17,5 @@ ringbuffer_t ringbuffer_create(uint32_t capacity);
 // keyword. Replace "this" by "instance" in the header file and in the source file.
 // ringbuffer.h:19:43: error: invalid parameter name: 'this' is a keyword
 uint32_t ringbuffer_capacity(ringbuffer_t this);
+
+void ringbuffer_destroy(ringbuffer_t instance);
