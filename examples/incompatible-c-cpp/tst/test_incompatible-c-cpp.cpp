@@ -12,7 +12,7 @@ extern "C"
 
 // The ringbuffer example is taken from Nick Miller's post "Practical Design Patterns:
 // Opaque Pointers and Objects in C" (https://interrupt.memfault.com/blog/opaque-pointers).
-class TestRingbuffer : public testing::Test
+class TestIncompatibleCCpp : public testing::Test
 {
 protected:
     // This function is called before the execution of each TEST.
@@ -26,7 +26,7 @@ protected:
     }
 };
 
-TEST_F(TestRingbuffer, capacity)
+TEST_F(TestIncompatibleCCpp, capacity)
 {
     ringbuffer_t rb = ringbuffer_create(5);
     EXPECT_EQ(ringbuffer_capacity(rb), 5);
