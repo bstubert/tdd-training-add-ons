@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    tdd:
+        build: .
+        container_name: tdd_legacy
+        volumes:
+#            - /host/path/to/project:/home/tdd/project
+            - ${HOME}/.gitconfig:/home/tdd/.gitconfig
+        user: tdd
