@@ -10,19 +10,19 @@ extern "C"
 }
 
 /*!
- * For each test marked TEST_F (e.g., MyFirstTestForFirstUnit.test1), GoogleTest performs
+ * For each test marked TEST_F (e.g., my_first_test.test1), GoogleTest performs
  * the following steps:
- *   - It creates a new MyFirstTestForFirstUnit object by calling its constructor.
+ *   - It creates a new my_first_test object by calling its constructor.
  *   - It calls the function SetUp().
- *   - It calls the test (e.g., MyFirstTestForFirstUnit.test1)
+ *   - It calls the test (e.g., my_first_test.test1)
  *   - It calls the function TearDown().
- *   - It destroys the MyFirstTestForFirstUnit object by calling its destructor.
- * We have a fresh MyFirstTestForFirstUnit object for each test. Hence, we can either use
- * the MyFirstTestForFirstUnit constructor or the SetUp() function for test setup. Similarly,
- * we can either use the MyFirstTestForFirstUnit destructor or the TearDown() function
+ *   - It destroys the my_first_test object by calling its destructor.
+ * We have a fresh my_first_test object for each test. Hence, we can either use
+ * the my_first_test constructor or the SetUp() function for test setup. Similarly,
+ * we can either use the my_first_test destructor or the TearDown() function
  * for test teardown.
  */
-class MyFirstTestForFirstUnit : public testing::Test
+class my_first_test : public testing::Test
 {
 protected:
     // This function is called before the execution of each TEST.
@@ -36,7 +36,7 @@ protected:
     }
 };
 
-TEST_F(MyFirstTestForFirstUnit, test1)
+TEST_F(my_first_test, test1)
 {
     FAIL() << "Your test is running! Now delete this line and watch your test pass.";
     /*
