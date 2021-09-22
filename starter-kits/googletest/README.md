@@ -6,11 +6,11 @@ We assume that the source code of our project is located in `/our/project/src`. 
 unit tests in the directory `/our/projects/tests`.
 
 We unpack the googletest-starterkit.zip in a directory of our choice, say, in `/our/downloads`. 
-We copy the contents of the subdirectory `google-test/testing-c` to the directory 
+We copy the contents of the subdirectory `googletest/testing-c` to the directory 
 `/our/projets/tests`. 
 
     $ cd /our/projets/tests
-    $ cp -r /our/downloads/google-test/testing-c/* /our/projects/tests
+    $ cp -r /our/downloads/googletest/testing-c/* /our/projects/tests
     
 We can install the starter kit anywhere we want. The closer it is to the source code the easier
 it is to provide the paths to the headers, sources and libraries.
