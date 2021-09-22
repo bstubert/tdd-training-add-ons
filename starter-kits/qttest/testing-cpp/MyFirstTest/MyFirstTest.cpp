@@ -1,5 +1,3 @@
-// Copyright (C) 2021, XXX
-
 #include <QtTest>
 
 // Add your project-specific #include's here.
