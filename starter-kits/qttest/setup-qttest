@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+
+# setup-qttest target_dir
+#
+# Copies a test skeleton for testing Qt/C++ code with Qt Test to the target directory target_dir.
+# The skeleton comprises the following files:
+#     target_dir
+#         CMakeLists.txt
+#         MyFirstTest
+#             CMakeLists.txt
+#             MyFirstTest.cpp
+#
+# You can build and run the tests as follows:
+#     $ cd target_dir
+#     $ mkdir build
+#     $ cmake .. -DCMAKE_PREFIX_PATH=/path/to/Qt5.15.2/5.15.2/gcc_64
+#     $ cmake --build .
+#     $ ctest -V
+#
+
+import argparse
+import os
+import shutil
+
+def copy_test_container(target_dir):
+    source_dir = os.path.dirname(__file__) + "/testing-cpp"
+    os.makedirs(target_dir, exist_ok=True)
+    shutil.copy(f'{source_dir}/CMakeLists.txt', target_dir)
+    test_case = "MyFirstTest"
+    test_source_dir = f'{source_dir}/{test_case}'
+    test_target_dir = f'{target_dir}/{test_case}'
+    os.makedirs(test_target_dir, exist_ok=True)
+    shutil.copy(f'{test_source_dir}/CMakeLists.txt', test_target_dir)
+    shutil.copy(f'{test_source_dir}/{test_case}.cpp', test_target_dir)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("target_dir", help="Target directory of test container.")
+    args = parser.parse_args()
+    copy_test_container(args.target_dir)
