@@ -1,12 +1,11 @@
-// Copyright (C) 2021, Burkhard Stubert (DBA Embedded Use)
-
 #include <gtest/gtest.h>
 
+/*!
+ * For C: Add your C-only include files in the extern-C section.
+ * For C++: Remove the extern-C section and just add your C++-ony include files here.
+ */
 extern "C"
 {
-/*!
- * Add your c-only include files here!
- */
 }
 
 /*!
