@@ -5,7 +5,7 @@ import QtTest 1.15
 
 TestCase
 {
-    name: "EnterNumber"
+    name: "EnterIntegerNumber"
 
     function test_enterFirstDigit()
     {
