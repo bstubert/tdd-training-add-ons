@@ -7,6 +7,11 @@ TestCase
 {
     name: "EnterIntegerNumber"
 
+    Keypad
+    {
+        id: keypad
+    }
+
     function test_enterFirstDigit()
     {
         verify(false, "All set up! Now write a proper test");
