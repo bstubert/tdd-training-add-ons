@@ -11,19 +11,18 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS QuickTest Qml REQUIRED)
-
-include(CTest)
+find_package(Qt5 COMPONENTS QuickTest REQUIRED)
 
 add_executable(${PROJECT_NAME}
     tst_keypad.cpp
     tst_keypad.qrc
 )
 
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE Qt5::QuickTest)
+
+include(CTest)
 add_test(
     NAME ${PROJECT_NAME}
     COMMAND ${PROJECT_NAME}
 )
-
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE Qt5::QuickTest Qt5::Qml)
