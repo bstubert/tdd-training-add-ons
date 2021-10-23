@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>tst_enter_number.qml</file>
+    </qresource>
+</RCC>
