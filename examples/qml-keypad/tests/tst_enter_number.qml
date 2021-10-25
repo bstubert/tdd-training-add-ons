@@ -12,8 +12,9 @@ TestCase
         id: keypad
     }
 
-    function test_enterFirstDigit()
+    function test_enter1()
     {
-        verify(false, "All set up! Now write a proper test");
+        // User clicks button "1"
+        compare(keypad.value, 1)
     }
 }
