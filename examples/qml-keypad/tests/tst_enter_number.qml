@@ -2,19 +2,30 @@
 
 import QtQuick 2.15
 import QtTest 1.15
+import QtQuick.Window 2.15
 
 TestCase
 {
     name: "EnterIntegerNumber"
+    when: windowShown
 
-    Keypad
+    Window
     {
-        id: keypad
+        width: 640
+        height: 480
+        visible: true
+
+        Keypad
+        {
+            id: keypad
+            anchors.fill: parent
+        }
     }
 
     function test_enter1()
     {
-        // User clicks button "1"
+        var key1 = findChild(keypad, "key1")
+        mouseClick(key1)
         compare(keypad.value, 1)
     }
 }

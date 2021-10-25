@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.15
 
 Pane
 {
-    property int value: parseInt(valueDisplay.text)
+    property int value: 0
 
     ColumnLayout
     {
@@ -22,8 +22,10 @@ Pane
 
         Button
         {
-            id: button1
+            id: key1
+            objectName: "key1"
             text: "1"
+            onClicked: value = 1
         }
     }
 }
