@@ -7,14 +7,14 @@ TestCase
 {
     name: "EnterIntegerNumber"
 
-    KeypadFixture
+    Keypad
     {
         id: keypad
     }
 
     function test_enter1()
     {
-//        mouseClick(keypad.button1)
+        // User clicks button "1"
         compare(keypad.value, 1)
     }
 }
