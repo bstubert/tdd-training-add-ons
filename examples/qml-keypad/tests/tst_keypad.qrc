@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>tst_enter_number.qml</file>
+        <file>KeypadFixture.qml</file>
         <file alias="Keypad.qml">../src/Keypad.qml</file>
     </qresource>
 </RCC>
