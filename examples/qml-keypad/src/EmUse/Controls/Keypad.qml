@@ -6,8 +6,6 @@ import QtQuick.Layouts
 
 Pane
 {
-    property int value: 0
-
     ColumnLayout
     {
         anchors.fill: parent
@@ -25,7 +23,6 @@ Pane
             id: key1
             objectName: "key1"
             text: "1"
-            onClicked: value = 1
         }
     }
 }

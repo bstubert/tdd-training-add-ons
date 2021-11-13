@@ -22,10 +22,8 @@ TestCase
         }
     }
 
-    function test_enter1()
+    function test_setup()
     {
-        var key1 = findChild(keypad, "key1")
-        mouseClick(key1)
-        compare(keypad.value, 1)
+        verify(false, "All set up! Now write a proper test");
     }
 }
