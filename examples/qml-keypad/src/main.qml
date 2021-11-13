@@ -3,6 +3,8 @@
 import QtQuick
 import QtQuick.Window
 
+import EmUse.Controls
+
 Window {
     width: 640
     height: 480

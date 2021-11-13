@@ -19,6 +19,13 @@ add_executable(${PROJECT_NAME}
     qml.qrc
 )
 
+qt_add_qml_module(${PROJECT_NAME}
+    URI EmUse.Controls
+    VERSION 0.1
+    QML_FILES EmUse/Controls/Keypad.qml
+)
+
+
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 

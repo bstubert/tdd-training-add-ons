@@ -11,15 +11,26 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 COMPONENTS QuickTest REQUIRED)
+find_package(Qt6 COMPONENTS Quick QuickTest REQUIRED)
 
 add_executable(${PROJECT_NAME}
     tst_keypad.cpp
-    tst_keypad.qrc
 )
 
+set_source_files_properties(
+    ../src/EmUse/Controls/Keypad.qml PROPERTIES
+        QT_RESOURCE_ALIAS Keypad.qml)
+
+qt_add_qml_module(${PROJECT_NAME}
+    URI KeypadTest
+    VERSION 0.1
+    RESOURCE_PREFIX /
+    QML_FILES tst_enter_number.qml ../src/EmUse/Controls/Keypad.qml
+)
+
+
 target_link_libraries(${PROJECT_NAME}
-  PRIVATE Qt6::QuickTest)
+  PRIVATE Qt6::Quick Qt6::QuickTest)
 
 include(CTest)
 add_test(
