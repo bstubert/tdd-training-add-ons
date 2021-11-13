@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine appEngine;
-    appEngine.load(QStringLiteral("qrc:/main.qml"));
+    appEngine.addImportPath(u"qrc:/imports"_qs);
+    appEngine.load(u"qrc:/main.qml"_qs);
     return app.exec();
 }

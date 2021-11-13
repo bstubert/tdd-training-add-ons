@@ -1,7 +1,7 @@
 # Copyright, Burkhard Stubert (burkhard.stubert@embeddeduse.com)
 
 cmake_minimum_required(VERSION 3.15)
-project(QmlKeypad LANGUAGES CXX)
+project(QmlImports LANGUAGES CXX)
 
-add_subdirectory(imports)
-add_subdirectory(main)
+add_subdirectory(src/EmUse/Controls)
+#add_subdirectory(tests)

@@ -2,22 +2,19 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(KeypadApp LANGUAGES CXX)
+project(EmUseControls LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 
-add_executable(${PROJECT_NAME}
-    main.cpp
-    qml.qrc
-)
+#add_executable(${PROJECT_NAME}
+#    main.cpp
+#    qml.qrc
+#)
 
 qt_add_qml_module(${PROJECT_NAME}
     URI EmUse.Controls
