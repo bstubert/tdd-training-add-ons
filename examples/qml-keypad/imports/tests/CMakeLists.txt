@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(test_qml_keypad)
+project(TestKeypad)
 
 find_package(Qt6 COMPONENTS Quick QuickTest REQUIRED)
 
@@ -15,7 +15,7 @@ set_source_files_properties(
         QT_RESOURCE_ALIAS Keypad.qml)
 
 qt_add_qml_module(${PROJECT_NAME}
-    URI KeypadTest
+    URI EmUse.Tests.Keypad
     VERSION 0.1
     RESOURCE_PREFIX /
     QML_FILES tst_enter_number.qml ../src/EmUse/Controls/Keypad.qml
