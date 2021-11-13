@@ -1,7 +1,7 @@
 // Copyright, Burkhard Stubert (burkhard.stubert@embeddeduse.com)
 
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Window
 
 Window {
     width: 640
