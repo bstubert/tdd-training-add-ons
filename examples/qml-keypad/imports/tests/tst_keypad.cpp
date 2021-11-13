@@ -2,8 +2,4 @@
 
 #include <QtQuickTest>
 
-int main(int argc, char **argv)
-{
-    return quick_test_main(argc, argv, "QmlKeypad", ":/");
-}
-
+QUICK_TEST_MAIN(QmlKeypad)
