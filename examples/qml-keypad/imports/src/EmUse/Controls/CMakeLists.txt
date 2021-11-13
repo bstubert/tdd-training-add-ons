@@ -4,11 +4,6 @@ cmake_minimum_required(VERSION 3.15)
 
 project(EmUseControls LANGUAGES CXX)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
 find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 
 qt_add_qml_module(${PROJECT_NAME}

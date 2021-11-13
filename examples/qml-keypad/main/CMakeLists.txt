@@ -2,15 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(KeypadApp LANGUAGES CXX)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(KeypadApp)
 
 find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 
