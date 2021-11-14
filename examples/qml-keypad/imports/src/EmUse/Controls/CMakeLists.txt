@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(EmUseControls LANGUAGES CXX)
+project(EmUseControls)
 
 find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 

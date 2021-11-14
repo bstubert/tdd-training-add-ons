@@ -17,7 +17,6 @@ set_source_files_properties(
 qt_add_qml_module(${PROJECT_NAME}
     URI EmUse.Tests.Keypad
     VERSION 0.1
-    RESOURCE_PREFIX /
     QML_FILES tst_enter_number.qml ../../src/EmUse/Controls/Keypad.qml
 )
 

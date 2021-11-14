@@ -2,24 +2,14 @@
 
 import QtQuick
 import QtTest
-import QtQuick.Window
 
 TestCase
 {
     name: "EnterIntegerNumber"
-    when: windowShown
 
-    Window
+    Keypad
     {
-        width: 640
-        height: 480
-        visible: true
-
-        Keypad
-        {
-            id: keypad
-            anchors.fill: parent
-        }
+        id: keypad
     }
 
     function test_setup()
