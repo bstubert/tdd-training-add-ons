@@ -6,8 +6,8 @@ import QtQuick.Window
 import EmUse.Controls
 
 Window {
-    width: 640
-    height: 480
+    width: 400
+    height: 300
     visible: true
     title: qsTr("TDD on QML Keypad")
 

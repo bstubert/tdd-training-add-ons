@@ -14,15 +14,8 @@ Pane
         {
             id: valueDisplay
             readOnly: true
-            text: ""
+            text: "933"
             horizontalAlignment: Text.AlignRight
-        }
-
-        Button
-        {
-            id: key1
-            objectName: "key1"
-            text: "1"
         }
     }
 }
