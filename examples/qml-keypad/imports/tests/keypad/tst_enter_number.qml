@@ -24,10 +24,14 @@ TestCase
     function test_pressKey1()
     {
         var key1 = findChild(keypad, "key1")
+        var valueDisplay = findChild(keypad, "valueDisplay")
+
         mouseClick(key1)
         compare(keypad.value, "1")
-
-        var valueDisplay = findChild(keypad, "valueDisplay")
         compare(valueDisplay.text, "1")
+
+        mouseClick(key1)
+        compare(keypad.value, "11")
+        compare(valueDisplay.text, "11")
     }
 }
