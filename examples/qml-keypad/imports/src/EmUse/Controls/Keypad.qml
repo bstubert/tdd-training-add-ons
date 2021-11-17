@@ -6,6 +6,8 @@ import QtQuick.Layouts
 
 Pane
 {
+    property real value: 0.0
+
     ColumnLayout
     {
         anchors.fill: parent
@@ -13,9 +15,18 @@ Pane
         TextField
         {
             id: valueDisplay
+            objectName: "valueDisplay"
             readOnly: true
-            text: "933"
+            text: value.toFixed(0)
             horizontalAlignment: Text.AlignRight
+        }
+
+        Button
+        {
+            id: key1
+            objectName: "key1"
+            text: "1"
+            onClicked: value = 1.0
         }
     }
 }

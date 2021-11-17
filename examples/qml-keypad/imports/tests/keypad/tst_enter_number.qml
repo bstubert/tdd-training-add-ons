@@ -6,14 +6,28 @@ import QtTest
 TestCase
 {
     name: "EnterIntegerNumber"
+    when: windowShown
 
-    Keypad
+    Window
     {
-        id: keypad
+        width: 400
+        height: 300
+        visible: true
+
+        Keypad
+        {
+            id: keypad
+            anchors.fill: parent
+        }
     }
 
-    function test_setup()
+    function test_pressKey1()
     {
-        verify(false, "All set up! Now write a proper test");
+        var key1 = findChild(keypad, "key1")
+        mouseClick(key1)
+        compare(keypad.value, 1.0)
+
+        var valueDisplay = findChild(keypad, "valueDisplay")
+        compare(valueDisplay.text, "1")
     }
 }
