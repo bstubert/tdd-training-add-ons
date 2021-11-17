@@ -26,7 +26,7 @@ Pane
             id: key1
             objectName: "key1"
             text: "1"
-            onClicked: value = "1"
+            onClicked: value += "1"
         }
     }
 }
