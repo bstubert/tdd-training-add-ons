@@ -8,6 +8,8 @@ TestCase
     name: "EnterIntegerNumber"
     when: windowShown
 
+    property string acceptedValue: ""
+
     Window
     {
         width: 400
@@ -18,6 +20,7 @@ TestCase
         {
             id: keypad
             anchors.fill: parent
+            onAccepted: acceptedValue = keypad.value
         }
     }
 
@@ -32,12 +35,16 @@ TestCase
     property QtObject key8: findChild(keypad, "key8")
     property QtObject key9: findChild(keypad, "key9")
     property QtObject key0: findChild(keypad, "key0")
+    property QtObject ok: findChild(keypad, "ok")
+    property QtObject cancel: findChild(keypad, "cancel")
 
     function init()
     {
-        keypad.value = ""
-        compare(keypad.value, "")
-        compare(valueDisplay.text, "")
+        acceptedValue = "77"
+        keypad.value = acceptedValue
+        keypad.wasDigitEntered = false
+        compare(keypad.value, acceptedValue)
+        compare(valueDisplay.text, acceptedValue)
     }
 
     function test_enterNumber12007()
@@ -71,5 +78,21 @@ TestCase
         mouseClick(key6)
         compare(keypad.value, "43566")
         compare(valueDisplay.text, "43566")
+    }
+
+    function test_acceptEnteredNumber()
+    {
+        mouseClick(key4)
+        mouseClick(key3)
+        mouseClick(ok)
+        compare(acceptedValue, "43")
+    }
+
+    function test_cancelEnteredNumber()
+    {
+        mouseClick(key4)
+        mouseClick(key3)
+        mouseClick(cancel)
+        compare(acceptedValue, "77")
     }
 }
