@@ -25,7 +25,7 @@ TestCase
     {
         var key1 = findChild(keypad, "key1")
         mouseClick(key1)
-        compare(keypad.value, 1.0)
+        compare(keypad.value, "1")
 
         var valueDisplay = findChild(keypad, "valueDisplay")
         compare(valueDisplay.text, "1")

@@ -6,7 +6,7 @@ import QtQuick.Layouts
 
 Pane
 {
-    property real value: 0.0
+    property string value: ""
 
     ColumnLayout
     {
@@ -17,7 +17,7 @@ Pane
             id: valueDisplay
             objectName: "valueDisplay"
             readOnly: true
-            text: value.toFixed(0)
+            text: value
             horizontalAlignment: Text.AlignRight
         }
 
@@ -26,7 +26,7 @@ Pane
             id: key1
             objectName: "key1"
             text: "1"
-            onClicked: value = 1.0
+            onClicked: value = "1"
         }
     }
 }
