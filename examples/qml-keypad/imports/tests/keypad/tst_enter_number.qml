@@ -12,8 +12,8 @@ TestCase
 
     Window
     {
-        width: 400
-        height: 300
+        width: 200
+        height: 240
         visible: true
 
         Keypad
