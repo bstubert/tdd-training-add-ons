@@ -95,4 +95,29 @@ TestCase
         mouseClick(cancel)
         compare(acceptedValue, "77")
     }
+
+    function test_ignoreLeadingZeros_00()
+    {
+        mouseClick(key0)
+        mouseClick(key0)
+        mouseClick(ok)
+        compare(acceptedValue, "0")
+    }
+
+    function test_ignoreLeadingZeros_04()
+    {
+        mouseClick(key0)
+        mouseClick(key4)
+        mouseClick(ok)
+        compare(acceptedValue, "4")
+    }
+
+    function test_ignoreLeadingZeros_007()
+    {
+        mouseClick(key0)
+        mouseClick(key0)
+        mouseClick(key7)
+        mouseClick(ok)
+        compare(acceptedValue, "7")
+    }
 }

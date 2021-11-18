@@ -14,15 +14,13 @@ Pane
 
     function addDigit(digit)
     {
-        if (!wasDigitEntered)
+        if (!wasDigitEntered || value == "0")
         {
             wasDigitEntered = true
             value = digit
+            return
         }
-        else
-        {
-            value += digit
-        }
+        value += digit
     }
 
     ColumnLayout
