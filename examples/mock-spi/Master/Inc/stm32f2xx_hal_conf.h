@@ -249,6 +249,9 @@
 #define USE_SPI_CRC                     1U
 
 /* Includes ------------------------------------------------------------------*/
+
+#include <stdint.h>
+
 /**
   * @brief Include module's header file 
   */

@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.19)
 
-project(full_duplex_spi LANGUAGES CXX)
+project(full_duplex_spi LANGUAGES CXX C)
 
 enable_testing()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -18,8 +21,11 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+set(SDK_ROOT /public/Projects/STM32CubeF2)
+
 add_executable(${PROJECT_NAME}
     tst_full_duplex_spi.cpp
+    ${SDK_ROOT}/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c
 )
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 
@@ -27,12 +33,11 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     STM32F205xx
 )
 
-set(SDK_INCLUDE_ROOT /public/Projects/STM32CubeF2)
 target_include_directories(${PROJECT_NAME} PRIVATE
     ../Master/Inc
     ../doubles
-    ${SDK_INCLUDE_ROOT}/Drivers/STM32F2xx_HAL_Driver/Inc/
-    ${SDK_INCLUDE_ROOT}/Drivers/CMSIS/Device/ST/STM32F2xx/Include/
+    ${SDK_ROOT}/Drivers/STM32F2xx_HAL_Driver/Inc/
+    ${SDK_ROOT}/Drivers/CMSIS/Device/ST/STM32F2xx/Include/
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest_main)
