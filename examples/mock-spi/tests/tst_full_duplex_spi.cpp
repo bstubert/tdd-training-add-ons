@@ -24,5 +24,6 @@ protected:
 
 TEST_F(TestSpiMaster, init)
 {
-    HAL_SPI_Init(nullptr);
+    SPI_HandleTypeDef hspi;
+    EXPECT_EQ(HAL_SPI_Init(&hspi), HAL_OK);
 }
