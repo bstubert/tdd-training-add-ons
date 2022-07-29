@@ -23,6 +23,18 @@ add_executable(${PROJECT_NAME}
 )
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    STM32F205xx
+)
+
+set(SDK_INCLUDE_ROOT /public/Projects/STM32CubeF2)
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ../Master/Inc
+    ../doubles
+    ${SDK_INCLUDE_ROOT}/Drivers/STM32F2xx_HAL_Driver/Inc/
+    ${SDK_INCLUDE_ROOT}/Drivers/CMSIS/Device/ST/STM32F2xx/Include/
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest_main)
 
 include(GoogleTest)

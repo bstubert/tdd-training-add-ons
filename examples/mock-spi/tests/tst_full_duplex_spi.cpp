@@ -2,10 +2,10 @@
 
 /*!
  * For C: Add your C-only include files in the extern-C section.
- * For C++: Remove the extern-C section and just add your C++-ony include files here.
  */
 extern "C"
 {
+#include "stm32f2xx_hal_conf.h"
 }
 
 class TestFullDuplexSpi : public testing::Test
@@ -24,9 +24,5 @@ protected:
 
 TEST_F(TestFullDuplexSpi, init)
 {
-    FAIL() << "Your test is running! Now delete this line and watch your test pass.";
-     /*
-      * Instantiate the class or call the function you want to test.
-      * Then delete this comment.
-      */
+    HAL_SPI_Init(nullptr);
 }
