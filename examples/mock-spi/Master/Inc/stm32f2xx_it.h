@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Examples_LL/SPI/SPI_TwoBoards_FullDuplex_IT/Inc/stm32f2xx_it.h
+  * @file    SPI/SPI_FullDuplex_AdvComIT/Master/Inc/stm32f2xx_it.h
   * @author  MCD Application Team
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
@@ -22,12 +22,10 @@
 #define __STM32F2xx_IT_H
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
-
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
@@ -42,8 +40,8 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
-void USER_BUTTON_IRQHANDLER(void);
-void SPI1_IRQHandler(void);
+void EXTI15_10_IRQHandler(void);
+void SPIx_IRQHandler(void);
 
 #ifdef __cplusplus
 }

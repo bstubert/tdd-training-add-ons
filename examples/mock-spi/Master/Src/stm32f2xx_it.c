@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Examples_LL/SPI/SPI_TwoBoards_FullDuplex_IT/Src/stm32f2xx_it.c
+  * @file    SPI/SPI_FullDuplex_AdvComIT/Master/Src/stm32f2xx_it.c
   * @author  MCD Application Team
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
@@ -20,13 +20,18 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+#include "main.h"
 #include "stm32f2xx_it.h"
 
-/** @addtogroup STM32F2xx_LL_Examples
+/** @addtogroup STM32F2xx_HAL_Examples
   * @{
   */
 
-/** @addtogroup SPI_TwoBoards_FullDuplex_IT
+/** @addtogroup SPI_FullDuplex_AdvComIT
+  * @{
+  */
+
+/** @addtogroup Master
   * @{
   */
 
@@ -34,7 +39,8 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-
+/* SPI handler declared in "main.c" file */
+extern SPI_HandleTypeDef SpiHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -137,6 +143,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+  HAL_IncTick();
 }
 
 /******************************************************************************/
@@ -147,48 +154,33 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief  This function handles external lines 15 to 10 interrupt request.
+  * @brief  This function handles External line 0 interrupt request.
   * @param  None
   * @retval None
   */
-void USER_BUTTON_IRQHANDLER(void)
+void EXTI15_10_IRQHandler(void)
 {
-  /* Manage Flags */
-  if(LL_EXTI_IsActiveFlag_0_31(USER_BUTTON_EXTI_LINE) != RESET)
-  {
-    LL_EXTI_ClearFlag_0_31(USER_BUTTON_EXTI_LINE);
-
-    /* Manage code in main.c */
-    UserButton_Callback(); 
-  }
+  HAL_GPIO_EXTI_IRQHandler(KEY_BUTTON_PIN);
 }
 
 /**
-  * @brief  This function handles SPI1 interrupt request.
+  * @brief  This function handles SPI interrupt request.
   * @param  None
   * @retval None
   */
-void SPI1_IRQHandler(void)
+void SPIx_IRQHandler(void)
 {
-  /* Check RXNE flag value in ISR register */
-  if(LL_SPI_IsActiveFlag_RXNE(SPI1))
-  {
-    /* Call function Slave Reception Callback */
-    SPI1_Rx_Callback();
-  }
-  /* Check RXNE flag value in ISR register */
-  else if(LL_SPI_IsActiveFlag_TXE(SPI1))
-  {
-    /* Call function Slave Reception Callback */
-    SPI1_Tx_Callback();
-  }
-  /* Check STOP flag value in ISR register */
-  else if(LL_SPI_IsActiveFlag_OVR(SPI1))
-  {
-    /* Call Error function */
-    SPI1_TransferError_Callback();
-  }
+  HAL_SPI_IRQHandler(&SpiHandle);
 }
+
+/**
+  * @brief  This function handles PPP interrupt request.
+  * @param  None
+  * @retval None
+  */
+/*void PPP_IRQHandler(void)
+{
+}*/
 
 /**
   * @}
@@ -198,4 +190,7 @@ void SPI1_IRQHandler(void)
   * @}
   */
 
+/**
+  * @}
+  */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

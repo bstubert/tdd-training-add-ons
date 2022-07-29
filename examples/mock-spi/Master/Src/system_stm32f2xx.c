@@ -47,7 +47,7 @@
 #include "stm32f2xx.h"
 
 #if !defined  (HSE_VALUE) 
-  #define HSE_VALUE    ((uint32_t)25000000) /*!< Default value of the External oscillator in Hz */
+  #define HSE_VALUE    ((uint32_t)25000000) /*!< Value of the External oscillator in Hz */
 #endif /* HSE_VALUE */
 
 #if !defined  (HSI_VALUE)
@@ -97,7 +97,7 @@
   * @{
   */
   
-  /* This variable can be updated in Three ways :
+  /* This varaible can be updated in Three ways :
       1) by calling CMSIS function SystemCoreClockUpdate()
       2) by calling HAL API function HAL_RCC_GetHCLKFreq()
       3) each time HAL_RCC_ClockConfig() is called to configure the system clock frequency 
@@ -105,9 +105,10 @@
                is no need to call the 2 first functions listed above, since SystemCoreClock
                variable is updated automatically.
   */
-  uint32_t SystemCoreClock = 16000000;
+  uint32_t SystemCoreClock = 12000000;
   const uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
   const uint8_t APBPrescTable[8]  = {0, 0, 0, 0, 1, 2, 3, 4};
+
 /**
   * @}
   */
@@ -193,10 +194,10 @@ void SystemInit(void)
   *             16 MHz) but the real value may vary depending on the variations
   *             in voltage and temperature.   
   *    
-  *         (**) HSE_VALUE is a constant defined in stm32f2xx_hal_conf.h file (its value
-  *              depends on the application requirements), user has to ensure that HSE_VALUE
-  *              is same as the real frequency of the crystal used. Otherwise, this function
-  *              may have wrong result.
+  *         (**) HSE_VALUE is a constant defined in stm32f2xx_hal_conf.h file (default value
+  *              25 MHz), user has to ensure that HSE_VALUE is same as the real
+  *              frequency of the crystal used. Otherwise, this function may
+  *              have wrong result.
   *                
   *         - The result of this function could be not correct when using fractional
   *           value for HSE crystal.
