@@ -8,7 +8,7 @@ extern "C"
 #include "stm32f2xx_hal_conf.h"
 }
 
-class TestFullDuplexSpi : public testing::Test
+class TestSpiMaster : public testing::Test
 {
 protected:
     // This function is called before the execution of each TEST.
@@ -22,7 +22,7 @@ protected:
     }
 };
 
-TEST_F(TestFullDuplexSpi, init)
+TEST_F(TestSpiMaster, init)
 {
     HAL_SPI_Init(nullptr);
 }
