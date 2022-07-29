@@ -26,6 +26,7 @@ set(SDK_ROOT /public/Projects/STM32CubeF2)
 add_executable(${PROJECT_NAME}
     tst_full_duplex_spi.cpp
     ${SDK_ROOT}/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c
+    ../doubles/fakes-spi.c
 )
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 
