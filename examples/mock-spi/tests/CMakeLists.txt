@@ -21,11 +21,9 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-set(SDK_ROOT /public/Projects/STM32CubeF2)
-
 add_executable(${PROJECT_NAME}
     tst_full_duplex_spi.cpp
-    ${SDK_ROOT}/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c
+    ../Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c
     ../doubles/fakes-spi.c
 )
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
@@ -37,8 +35,8 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
     ../Inc
     ../doubles
-    ${SDK_ROOT}/Drivers/STM32F2xx_HAL_Driver/Inc/
-    ${SDK_ROOT}/Drivers/CMSIS/Device/ST/STM32F2xx/Include/
+    ../Drivers/STM32F2xx_HAL_Driver/Inc/
+    ../Drivers/CMSIS/Device/ST/STM32F2xx/Include/
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest_main)
