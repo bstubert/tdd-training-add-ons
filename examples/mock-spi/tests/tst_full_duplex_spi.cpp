@@ -139,3 +139,36 @@ TEST_F(TestSpiMaster, init)
     // Value: I2SCFGR == 0; Mask: SPI_I2SCFGR_I2SMOD == 0x00000800
     EXPECT_EQ(READ_REG(handle.Instance->I2SCFGR), 0);
 }
+
+/*
+ Problematic 32-bit pointer arithmetic.
+
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c: In function ‘HAL_SPI_Transmit_DMA’:
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1692:48: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1692 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmatx, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
+      |                                                ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1692:76: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1692 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmatx, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
+      |                                                                            ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c: In function ‘HAL_SPI_Receive_DMA’:
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1807:48: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1807 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmarx, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
+      |                                                ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1807:79: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1807 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmarx, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
+      |                                                                               ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c: In function ‘HAL_SPI_TransmitReceive_DMA’:
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1929:48: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1929 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmarx, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
+      |                                                ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1929:79: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1929 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmarx, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
+      |                                                                               ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1951:48: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1951 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmatx, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
+      |                                                ^
+/public/Projects/STM32CubeF2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c:1951:76: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+ 1951 |   if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmatx, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
+      |                                                                            ^
+[2/2 5.0/sec] Linking CXX executable full_duplex_spi
+*/
