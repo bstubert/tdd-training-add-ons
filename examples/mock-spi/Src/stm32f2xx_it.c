@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    SPI/SPI_FullDuplex_AdvComIT/Master/Src/stm32f2xx_it.c
+  * @file    SPI/SPI_FullDuplex_ComDMA/Src/stm32f2xx_it.c
   * @author  MCD Application Team
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
@@ -27,11 +27,7 @@
   * @{
   */
 
-/** @addtogroup SPI_FullDuplex_AdvComIT
-  * @{
-  */
-
-/** @addtogroup Master
+/** @addtogroup SPI_FullDuplex_ComDMA
   * @{
   */
 
@@ -41,6 +37,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* SPI handler declared in "main.c" file */
 extern SPI_HandleTypeDef SpiHandle;
+
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -49,7 +46,7 @@ extern SPI_HandleTypeDef SpiHandle;
 /******************************************************************************/
 
 /**
-  * @brief  This function handles NMI exception.
+  * @brief   This function handles NMI exception.
   * @param  None
   * @retval None
   */
@@ -154,13 +151,23 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief  This function handles External line 0 interrupt request.
+  * @brief  This function handles DMA Rx interrupt request.
   * @param  None
   * @retval None
   */
-void EXTI15_10_IRQHandler(void)
+void SPIx_DMA_RX_IRQHandler(void)
 {
-  HAL_GPIO_EXTI_IRQHandler(KEY_BUTTON_PIN);
+  HAL_DMA_IRQHandler(SpiHandle.hdmarx);
+}
+
+/**
+  * @brief  This function handles DMA Tx interrupt request.
+  * @param  None
+  * @retval None
+  */
+void SPIx_DMA_TX_IRQHandler(void)
+{
+  HAL_DMA_IRQHandler(SpiHandle.hdmatx);
 }
 
 /**
@@ -190,7 +197,4 @@ void SPIx_IRQHandler(void)
   * @}
   */
 
-/**
-  * @}
-  */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

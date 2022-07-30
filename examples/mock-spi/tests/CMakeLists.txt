@@ -35,7 +35,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ../Master/Inc
+    ../Inc
     ../doubles
     ${SDK_ROOT}/Drivers/STM32F2xx_HAL_Driver/Inc/
     ${SDK_ROOT}/Drivers/CMSIS/Device/ST/STM32F2xx/Include/
