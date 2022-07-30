@@ -92,6 +92,9 @@ TEST_F(TestSpiMaster, init)
     handle.Init.TIMode            = SPI_TIMODE_DISABLE;
     handle.Init.Mode              = SPI_MODE_MASTER;
     EXPECT_EQ(HAL_SPI_Init(&handle), HAL_OK);
+    EXPECT_EQ(handle.ErrorCode, HAL_SPI_ERROR_NONE);
+    EXPECT_EQ(handle.State, HAL_SPI_STATE_READY);
+
     // Check result of: __HAL_SPI_DISABLE(hspi);
     EXPECT_EQ(READ_BIT(handle.Instance->CR1, SPI_CR1_SPE), 0);
 
