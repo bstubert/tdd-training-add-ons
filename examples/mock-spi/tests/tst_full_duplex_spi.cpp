@@ -65,8 +65,12 @@ protected:
  *
  * In stm32f205xx.h, we instantiate a global variable and assign its address to SPI3.
  *
- *     SPI_TypeDef spi3_base = {0};
- *     #define SPI3 (&spi3_base);
+ *     static inline SPI_TypeDef *spi3_base()
+ *     {
+ *         static SPI_TypeDef spi3 = {0};
+ *         return &spi3;
+ *     }
+ *     #define SPI3 (spi3_base());
  *
  * We comment out the original definitions of SPI3_BASE and SPI3. The init test runs without
  * crashing.
@@ -88,4 +92,37 @@ TEST_F(TestSpiMaster, init)
     handle.Init.TIMode            = SPI_TIMODE_DISABLE;
     handle.Init.Mode              = SPI_MODE_MASTER;
     EXPECT_EQ(HAL_SPI_Init(&handle), HAL_OK);
+    // Check result of: __HAL_SPI_DISABLE(hspi);
+    EXPECT_EQ(READ_BIT(handle.Instance->CR1, SPI_CR1_SPE), 0);
+
+    // Check result of: WRITE_REG(hspi->Instance->CR1, ...);
+    //
+    // Result: 797 = 0000001100011101
+    //
+    // Bits set to 1:
+    //
+    // Bit 0:     Value: CLKPhase == SPI_PHASE_2EDGE == SPI_CR1_CPHA == 0x00000001
+    //            Mask: SPI_CR1_CPHA == 0x00000001
+    // Bit 2, 8:  Value: Mode == SPI_MODE_MASTER == (SPI_CR1_MSTR | SPI_CR1_SSI) == 0x00000104
+    //            Mask: SPI_CR1_MSTR | SPI_CR1_SSI == 0x00000104
+    // Bit 3, 4:  Value: BaudRatePrescaler == SPI_BAUDRATEPRESCALER_16 == (SPI_CR1_BR_1 | SPI_CR1_BR_0) == 0x00000018
+    //            Mask: SPI_CR1_BR_Msk == 0x00000038
+    // Bit 9:     Value: NSS == SPI_NSS_SOFT == SPI_CR1_SSM ==  0x00000200
+    //            Mask: SPI_CR1_SSM == 0x00000200
+    //
+    // Bits set to 0:
+    //
+    // Value: Direction == SPI_DIRECTION_2LINES  == (0x00000000U)
+    // Value: DataSize == SPI_DATASIZE_8BIT == (0x00000000U)
+    // Value: CLKPolarity == SPI_POLARITY_LOW == (0x00000000U)
+    EXPECT_EQ(READ_REG(handle.Instance->CR1), 0b0000001100011101);
+
+    // Check result of: WRITE_REG(hspi->Instance->CR2, ...);
+    //
+    // Result: 0
+    //
+    // NSS == 0x00000200; NSS >> 16U = 0; Check: When is NSS != 0?
+    // Value: TIMode == SPI_TIMODE_DISABLE == (0x00000000U); Mask: SPI_CR2_FRF == 0x00000010
+    //
+    EXPECT_EQ(READ_REG(handle.Instance->CR2), 0);
 }
