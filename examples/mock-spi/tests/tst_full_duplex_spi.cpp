@@ -128,4 +128,14 @@ TEST_F(TestSpiMaster, init)
     // Value: TIMode == SPI_TIMODE_DISABLE == (0x00000000U); Mask: SPI_CR2_FRF == 0x00000010
     //
     EXPECT_EQ(READ_REG(handle.Instance->CR2), 0);
+
+    // Check that WRITE_REG(hspi->Instance->CRCPR, ...) because CRC calculation is disabled.
+    // Hence, the result is 0.
+    //
+    EXPECT_EQ(READ_REG(handle.Instance->CRCPR), 0);
+
+    // Check result of: CLEAR_BIT(hspi->Instance->I2SCFGR, SPI_I2SCFGR_I2SMOD);
+    // Result: 0
+    // Value: I2SCFGR == 0; Mask: SPI_I2SCFGR_I2SMOD == 0x00000800
+    EXPECT_EQ(READ_REG(handle.Instance->I2SCFGR), 0);
 }
