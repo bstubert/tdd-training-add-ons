@@ -812,14 +812,6 @@ typedef struct
 }
 USB_OTG_HostChannelTypeDef;
 
-//static inline SPI_TypeDef *spi3_base()
-//{
-//    static SPI_TypeDef spi3 = {0};
-//    return &spi3;
-//}
-//#define SPI3 (spi3_base());
-
-
 /** 
   * @brief Peripheral_memory_map
   */
