@@ -275,38 +275,8 @@ HAL_StatusTypeDef HAL_SPI_Init(SPI_HandleTypeDef *hspi)
   assert_param(IS_SPI_BAUDRATE_PRESCALER(hspi->Init.BaudRatePrescaler));
   assert_param(IS_SPI_FIRST_BIT(hspi->Init.FirstBit));
   assert_param(IS_SPI_TIMODE(hspi->Init.TIMode));
-  if (hspi->Init.TIMode == SPI_TIMODE_DISABLE)
-  {
-    assert_param(IS_SPI_CPOL(hspi->Init.CLKPolarity));
-    assert_param(IS_SPI_CPHA(hspi->Init.CLKPhase));
 
-    if (hspi->Init.Mode == SPI_MODE_MASTER)
-    {
-      assert_param(IS_SPI_BAUDRATE_PRESCALER(hspi->Init.BaudRatePrescaler));
-    }
-    else
-    {
-      /* Baudrate prescaler not use in Motoraola Slave mode. force to default value */
-      hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-    }
-  }
-  else
-  {
-    assert_param(IS_SPI_BAUDRATE_PRESCALER(hspi->Init.BaudRatePrescaler));
-
-    /* Force polarity and phase to TI protocaol requirements */
-    hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
-    hspi->Init.CLKPhase    = SPI_PHASE_1EDGE;
-  }
-#if (USE_SPI_CRC != 0U)
-  assert_param(IS_SPI_CRC_CALCULATION(hspi->Init.CRCCalculation));
-  if (hspi->Init.CRCCalculation == SPI_CRCCALCULATION_ENABLE)
-  {
-    assert_param(IS_SPI_CRC_POLYNOMIAL(hspi->Init.CRCPolynomial));
-  }
-#else
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-#endif /* USE_SPI_CRC */
 
   if (hspi->State == HAL_SPI_STATE_RESET)
   {
@@ -334,20 +304,6 @@ HAL_StatusTypeDef HAL_SPI_Init(SPI_HandleTypeDef *hspi)
 
   /* Configure : NSS management, TI Mode */
   WRITE_REG(hspi->Instance->CR2, (((hspi->Init.NSS >> 16U) & SPI_CR2_SSOE) | (hspi->Init.TIMode & SPI_CR2_FRF)));
-
-#if (USE_SPI_CRC != 0U)
-  /*---------------------------- SPIx CRCPOLY Configuration ------------------*/
-  /* Configure : CRC Polynomial */
-  if (hspi->Init.CRCCalculation == SPI_CRCCALCULATION_ENABLE)
-  {
-    WRITE_REG(hspi->Instance->CRCPR, (hspi->Init.CRCPolynomial & SPI_CRCPR_CRCPOLY_Msk));
-  }
-#endif /* USE_SPI_CRC */
-
-#if defined(SPI_I2SCFGR_I2SMOD)
-  /* Activate the SPI mode (Make sure that I2SMOD bit in I2SCFGR register is reset) */
-  CLEAR_BIT(hspi->Instance->I2SCFGR, SPI_I2SCFGR_I2SMOD);
-#endif /* SPI_I2SCFGR_I2SMOD */
 
   hspi->ErrorCode = HAL_SPI_ERROR_NONE;
   hspi->State     = HAL_SPI_STATE_READY;
