@@ -40,4 +40,6 @@ TEST_F(TestHalSpi, init)
     handle.Init.NSS               = SPI_NSS_SOFT;
     handle.Init.TIMode            = SPI_TIMODE_DISABLE;
     EXPECT_EQ(HAL_SPI_Init(&handle), HAL_OK);
+    EXPECT_EQ(READ_REG(handle.Instance->CR1), 0x033e);
+    EXPECT_EQ(READ_REG(handle.Instance->CR2), 0x0000);
 }

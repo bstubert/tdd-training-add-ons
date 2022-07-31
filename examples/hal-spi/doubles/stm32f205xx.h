@@ -973,7 +973,14 @@ USB_OTG_HostChannelTypeDef;
 #define WWDG                ((WWDG_TypeDef *) WWDG_BASE)
 #define IWDG                ((IWDG_TypeDef *) IWDG_BASE)
 #define SPI2                ((SPI_TypeDef *) SPI2_BASE)
-#define SPI3                ((SPI_TypeDef *) SPI3_BASE)
+
+inline static SPI_TypeDef *spi3_base()
+{
+    static SPI_TypeDef spi3 = {0};
+    return &spi3;
+}
+#define SPI3 (spi3_base());
+
 #define USART2              ((USART_TypeDef *) USART2_BASE)
 #define USART3              ((USART_TypeDef *) USART3_BASE)
 #define UART4               ((USART_TypeDef *) UART4_BASE)
