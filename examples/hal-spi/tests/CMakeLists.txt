@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 
-project(full_duplex_spi LANGUAGES CXX C)
+project(hal_spi LANGUAGES CXX C)
 
 enable_testing()
 
@@ -22,7 +22,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(${PROJECT_NAME}
-    tst_full_duplex_spi.cpp
+    tst_hal_spi.cpp
     ../Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.c
     ../doubles/fakes-spi.c
 )
