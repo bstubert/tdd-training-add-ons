@@ -426,7 +426,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef *hspi, uint8_t *
   hspi->TxISR       = NULL;
 
   /* Enable the Rx DMA Stream/Channel  */
-  if (HAL_OK != HAL_DMA_Start_IT(NULL, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
+  if (HAL_OK != HAL_DMA_Start_IT(NULL, (address_uint_t)&hspi->Instance->DR, (address_uint_t)hspi->pRxBuffPtr,
                                  hspi->RxXferCount))
   {
     /* Update SPI error code */
@@ -441,7 +441,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef *hspi, uint8_t *
   SET_BIT(hspi->Instance->CR2, SPI_CR2_RXDMAEN);
 
   /* Enable the Tx DMA Stream/Channel  */
-  if (HAL_OK != HAL_DMA_Start_IT(NULL, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
+  if (HAL_OK != HAL_DMA_Start_IT(NULL, (address_uint_t)hspi->pTxBuffPtr, (address_uint_t)&hspi->Instance->DR,
                                  hspi->TxXferCount))
   {
     /* Update SPI error code */
