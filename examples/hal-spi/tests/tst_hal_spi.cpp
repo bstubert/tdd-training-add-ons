@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <memory>
 
 #include <gtest/gtest.h>
@@ -48,4 +49,15 @@ TEST_F(TestHalSpi, init)
     EXPECT_EQ(HAL_SPI_Init(m_handle.get()), HAL_OK);
     EXPECT_EQ(READ_REG(m_handle->Instance->CR1), 570);
     EXPECT_EQ(READ_REG(m_handle->Instance->CR2), 0);
+}
+
+TEST_F(TestHalSpi, transmitReceive)
+{
+    EXPECT_EQ(HAL_SPI_Init(m_handle.get()), HAL_OK);
+
+    uint8_t txBuffer[] = "**** Full-Duplex SPI via DMA ****";
+    static constexpr uint16_t BUFFERSIZE = sizeof(txBuffer) / sizeof(txBuffer[0]);
+    uint8_t rxBuffer[BUFFERSIZE];
+    EXPECT_EQ(HAL_SPI_TransmitReceive_DMA(m_handle.get(), txBuffer, rxBuffer, BUFFERSIZE),
+              HAL_OK);
 }

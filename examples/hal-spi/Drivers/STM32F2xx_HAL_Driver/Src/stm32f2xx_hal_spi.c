@@ -383,10 +383,6 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef *hspi, uint8_t *
   HAL_SPI_StateTypeDef tmp_state;
   HAL_StatusTypeDef errorcode = HAL_OK;
 
-  /* Check rx & tx dma handles */
-  assert_param(IS_SPI_DMA_HANDLE(hspi->hdmarx));
-  assert_param(IS_SPI_DMA_HANDLE(hspi->hdmatx));
-
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
 
@@ -429,11 +425,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef *hspi, uint8_t *
   hspi->RxISR       = NULL;
   hspi->TxISR       = NULL;
 
-  /* Set the DMA AbortCpltCallback */
-  hspi->hdmarx->XferAbortCallback = NULL;
-
   /* Enable the Rx DMA Stream/Channel  */
-  if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmarx, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
+  if (HAL_OK != HAL_DMA_Start_IT(NULL, (uint32_t)&hspi->Instance->DR, (uint32_t)hspi->pRxBuffPtr,
                                  hspi->RxXferCount))
   {
     /* Update SPI error code */
@@ -447,15 +440,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef *hspi, uint8_t *
   /* Enable Rx DMA Request */
   SET_BIT(hspi->Instance->CR2, SPI_CR2_RXDMAEN);
 
-  /* Set the SPI Tx DMA transfer complete callback as NULL because the communication closing
-  is performed in DMA reception complete callback  */
-  hspi->hdmatx->XferHalfCpltCallback = NULL;
-  hspi->hdmatx->XferCpltCallback     = NULL;
-  hspi->hdmatx->XferErrorCallback    = NULL;
-  hspi->hdmatx->XferAbortCallback    = NULL;
-
   /* Enable the Tx DMA Stream/Channel  */
-  if (HAL_OK != HAL_DMA_Start_IT(hspi->hdmatx, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
+  if (HAL_OK != HAL_DMA_Start_IT(NULL, (uint32_t)hspi->pTxBuffPtr, (uint32_t)&hspi->Instance->DR,
                                  hspi->TxXferCount))
   {
     /* Update SPI error code */
