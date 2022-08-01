@@ -1,3 +1,5 @@
+#include <memory>
+
 #include <gtest/gtest.h>
 
 /*!
@@ -12,34 +14,38 @@ extern "C"
 
 class TestHalSpi : public testing::Test
 {
+
 protected:
     // This function is called before the execution of each TEST.
     void SetUp() override
     {
+        m_handle = std::make_unique<SPI_HandleTypeDef>();
+        m_handle->Instance               = SPIx;
+        m_handle->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+        m_handle->Init.Direction         = SPI_DIRECTION_2LINES;
+        m_handle->Init.CLKPhase          = SPI_PHASE_1EDGE;
+        m_handle->Init.CLKPolarity       = SPI_POLARITY_HIGH;
+        m_handle->Init.CRCCalculation    = SPI_CRCCALCULATION_DISABLE;
+        m_handle->Init.CRCPolynomial     = 7;
+        m_handle->Init.DataSize          = SPI_DATASIZE_8BIT;
+        m_handle->Init.FirstBit          = SPI_FIRSTBIT_MSB;
+        m_handle->Init.NSS               = SPI_NSS_SOFT;
+        m_handle->Init.TIMode            = SPI_TIMODE_DISABLE;
+        EXPECT_TRUE(m_handle);
     }
 
     // This function is called after the execution of each TEST.
     void TearDown() override
     {
     }
+
+    std::unique_ptr<SPI_HandleTypeDef> m_handle;
 };
 
 
 TEST_F(TestHalSpi, init)
 {
-    SPI_HandleTypeDef handle;
-    handle.Instance               = SPIx;
-    handle.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
-    handle.Init.Direction         = SPI_DIRECTION_2LINES;
-    handle.Init.CLKPhase          = SPI_PHASE_1EDGE;
-    handle.Init.CLKPolarity       = SPI_POLARITY_HIGH;
-    handle.Init.CRCCalculation    = SPI_CRCCALCULATION_DISABLE;
-    handle.Init.CRCPolynomial     = 7;
-    handle.Init.DataSize          = SPI_DATASIZE_8BIT;
-    handle.Init.FirstBit          = SPI_FIRSTBIT_MSB;
-    handle.Init.NSS               = SPI_NSS_SOFT;
-    handle.Init.TIMode            = SPI_TIMODE_DISABLE;
-    EXPECT_EQ(HAL_SPI_Init(&handle), HAL_OK);
-    EXPECT_EQ(READ_REG(handle.Instance->CR1), 0x033e);
-    EXPECT_EQ(READ_REG(handle.Instance->CR2), 0x0000);
+    EXPECT_EQ(HAL_SPI_Init(m_handle.get()), HAL_OK);
+    EXPECT_EQ(READ_REG(m_handle->Instance->CR1), 570);
+    EXPECT_EQ(READ_REG(m_handle->Instance->CR2), 0);
 }
