@@ -15,7 +15,4 @@ typedef struct __DMA_HandleTypeDef
 
 } DMA_HandleTypeDef;
 
-HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, uint32_t SrcAddress,
-                                   uint32_t DstAddress, uint32_t DataLength);
-
 #endif // FAKESSPI_H
