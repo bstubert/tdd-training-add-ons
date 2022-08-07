@@ -166,8 +166,6 @@ typedef enum
   * @{
   */   
 
-#define address_uint_t uint64_t
-
 /** 
   * @brief Analog to Digital Converter  
   */
@@ -325,9 +323,9 @@ typedef struct
 {
   __IO uint32_t CR;     /*!< DMA stream x configuration register      */
   __IO uint32_t NDTR;   /*!< DMA stream x number of data register     */
-  __IO address_uint_t PAR;    /*!< DMA stream x peripheral address register */
-  __IO address_uint_t M0AR;   /*!< DMA stream x memory 0 address register   */
-  __IO address_uint_t M1AR;   /*!< DMA stream x memory 1 address register   */
+  __IO uint32_t PAR;    /*!< DMA stream x peripheral address register */
+  __IO uint32_t M0AR;   /*!< DMA stream x memory 0 address register   */
+  __IO uint32_t M1AR;   /*!< DMA stream x memory 1 address register   */
   __IO uint32_t FCR;    /*!< DMA stream x FIFO control register       */
 } DMA_Stream_TypeDef;
 

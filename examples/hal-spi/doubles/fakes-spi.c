@@ -13,11 +13,8 @@ EXPLODING_FAKE_FOR(HAL_GetTick)
 EXPLODING_FAKE_FOR(HAL_DMA_Abort)
 EXPLODING_FAKE_FOR(HAL_DMA_Abort_IT)
 
-HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, volatile void *SrcPointer,
-                                   volatile void *DstPointer, uint32_t DataLength)
+HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, uint32_t SrcAddress,
+                                   uint32_t DstAddress, uint32_t DataLength)
 {
-    address_uint_t SrcAddress = (address_uint_t)SrcPointer;
-    address_uint_t DstAddress = (address_uint_t)DstPointer;
-    // Old implementation ...
     return HAL_OK;
 }
