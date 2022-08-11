@@ -16,6 +16,8 @@ extern "C"
 class TestHalSpi : public testing::Test
 {
 
+// Remove in future commit!
+
 protected:
     // This function is called before the execution of each TEST.
     void SetUp() override
